@@ -66,17 +66,6 @@ models:
 
   - name: trh_s1ide
     description: "Employés"
-    config:
-      post-hook: |
-        {% if target.type == 'snowflake' %}
-        ALTER VIEW {{ this }} ALTER COLUMN identite_nom SET TAG DATAMESH.SQLMESH.VARCHAR_MASKING = 'employees';
-        ALTER VIEW {{ this }} ALTER COLUMN identite_nom_de_naissance SET TAG DATAMESH.SQLMESH.VARCHAR_MASKING = 'employees';
-        ALTER VIEW {{ this }} ALTER COLUMN identite_prenom SET TAG DATAMESH.SQLMESH.VARCHAR_MASKING = 'employees';
-        ALTER VIEW {{ this }} ALTER COLUMN identite_n_de_securite_sociale SET TAG DATAMESH.SQLMESH.VARCHAR_MASKING = 'employees';
-        ALTER VIEW {{ this }} ALTER COLUMN identite_date_de_naissance SET TAG DATAMESH.SQLMESH.VARCHAR_MASKING = 'employees';
-        ALTER VIEW {{ this }} ALTER COLUMN identite_commune_de_naiss SET TAG DATAMESH.SQLMESH.VARCHAR_MASKING = 'employees';
-        ALTER VIEW {{ this }} ALTER COLUMN identite_matricule_local SET TAG DATAMESH.SQLMESH.VARCHAR_MASKING = 'employees';
-        {% endif %}
     columns:
       - name: identite_matricule
         description: "Identifiant employé (matricule)"

@@ -1,6 +1,13 @@
 {{ config(
     materialized='view',
-    tags=['employees', 'bronze']
+    tags=['employees', 'bronze'],
+    post_hook="{{ set_column_tags({
+        'identite_nom': 'DATAMESH.SQLMESH.VARCHAR_MASKING = \\'employees\\'',
+        'identite_nom_de_naissance': 'DATAMESH.SQLMESH.VARCHAR_MASKING = \\'employees\\'',
+        'identite_prenom': 'DATAMESH.SQLMESH.VARCHAR_MASKING = \\'employees\\'',
+        'identite_n_de_securite_sociale': 'DATAMESH.SQLMESH.VARCHAR_MASKING = \\'employees\\'',
+        'identite_commune_de_naiss': 'DATAMESH.SQLMESH.VARCHAR_MASKING = \\'employees\\'',
+    }) }}"
 ) }}
 
 SELECT
