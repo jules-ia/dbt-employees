@@ -1,0 +1,19 @@
+employees:
+  target: staging
+  outputs:
+    staging:
+      type: snowflake
+      account: "not needed"
+      user: "not needed"
+      role: dbt__b_role
+      database: dbt_staging
+      schema: public
+      warehouse: datamesh_xs
+    production:
+      type: snowflake
+      account: "not needed"
+      user: "not needed"
+      role: dbt__b_role
+      database: dbt
+      schema: public
+      warehouse: datamesh_xs

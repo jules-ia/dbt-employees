@@ -1,0 +1,126 @@
+version: 2
+
+sources:
+  - name: datalake_staging
+    description: "Data lake staging area containing raw data from various source systems"
+    database: datalake_staging
+    schema: teamsrh
+    tables:
+      - name: s1contrat
+        description: "Contrats des employés - données brutes du système TeamsRH"
+        columns:
+          - name: contrat_matricule
+            description: "Identifiant salarié (matricule)"
+            tests:
+              - not_null
+          - name: contrat_date_debut
+            description: "Date de début du contrat"
+          - name: contrat_date_fin
+            description: "Date de fin du contrat"
+          - name: contrat_contrat
+            description: "Type de contrat (code)"
+            tests:
+              - not_null
+          - name: contrat_date_anciennete_groupe
+            description: "Ancienneté groupe"
+          - name: contrat_date_anciennete_societe
+            description: "Ancienneté société"
+          - name: contrat_date_anciennete_reconst
+            description: "Ancienneté reconstituée"
+          - name: contrat_date_debut_preavis
+            description: "Début de préavis"
+          - name: contrat_date_fin_preavis
+            description: "Fin de préavis"
+          - name: contrat_date_sortie_physique
+            description: "Date de sortie physique"
+          - name: contrat_date_de_solde
+            description: "Date de solde"
+          - name: contrat_societe
+            description: "Société (code)"
+          - name: contrat_motif_de_changement
+            description: "Motif de changement (code)"
+          - name: contrat_motif_de_changement_listes_jds_libelle
+            description: "Motif de changement (libellé)"
+          - name: contrat_motif_entree
+            description: "Motif d'entrée (code)"
+          - name: contrat_motif_entree_motifs_d_entree_libelle
+            description: "Motif d'entrée (libellé)"
+          - name: contrat_motif_sortie_solde_tout_compte
+            description: "Motif de sortie / STC (code)"
+          - name: contrat_motif_sortie_solde_tout_compte_motifs_de_sortie_libelle
+            description: "Motif de sortie / STC (libellé)"
+          - name: contrat_regl
+            description: "Régime / règle paie (code)"
+          - name: file_name
+            description: "Nom du fichier source"
+          - name: updated_at
+            description: "Horodatage de la dernière mise à jour"
+            tests:
+              - not_null
+          - name: ingested_at
+            description: "Horodatage d'ingestion"
+            tests:
+              - not_null
+
+      - name: s1ide
+        description: "Identités des employés - données brutes du système TeamsRH"
+        columns:
+          - name: identite_matricule
+            description: "Identifiant employé (matricule)"
+            tests:
+              - not_null
+              - unique
+          - name: identite_item
+            description: "Identifiant d'item"
+            tests:
+              - not_null
+          - name: identite_nom
+            description: "Nom de famille"
+          - name: identite_nom_de_naissance
+            description: "Nom de naissance"
+          - name: identite_prenom
+            description: "Prénom"
+          - name: identite_civilite_code
+            description: "Civilité (code)"
+          - name: identite_civilite_listes_jds_libelle
+            description: "Civilité (libellé)"
+          - name: identite_sexe
+            description: "Sexe (code)"
+          - name: identite_sexe_listes_jds_libelle
+            description: "Sexe (libellé)"
+          - name: identite_situation_familiale
+            description: "Situation familiale (code)"
+          - name: identite_situation_familiale_listes_jds_libelle
+            description: "Situation familiale (libellé)"
+          - name: identite_n_de_securite_sociale
+            description: "Numéro de sécurité sociale"
+          - name: identite_date_de_naissance
+            description: "Date de naissance"
+          - name: identite_nationalite
+            description: "Nationalité (code)"
+          - name: identite_nationalite_pays_insee_libelle
+            description: "Nationalité (libellé)"
+          - name: identite_commune_de_naiss
+            description: "Commune de naissance"
+          - name: identite_code_insee_commune
+            description: "Code INSEE commune de naissance"
+          - name: identite_dept_de_naiss
+            description: "Département de naissance (code)"
+          - name: identite_dept_de_naiss_listes_jds_libelle
+            description: "Département de naissance (libellé)"
+          - name: identite_pays_de_naiss_pays_insee_code_pays
+            description: "Pays de naissance (code INSEE)"
+          - name: identite_pays_de_naiss_pays_insee_libelle
+            description: "Pays de naissance (libellé INSEE)"
+          - name: identite_matricule_local
+            description: "Matricule local"
+          - name: file_name
+            description: "Nom du fichier source"
+          - name: updated_at
+            description: "Horodatage de la dernière mise à jour"
+            tests:
+              - not_null
+          - name: ingested_at
+            description: "Horodatage d'ingestion"
+            tests:
+              - not_null
