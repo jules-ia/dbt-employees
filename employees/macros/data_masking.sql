@@ -11,13 +11,18 @@
       {% set columns = columns.keys() | list %}
     {% endif %}
     
+    {# Build all ALTER statements as a single SQL block #}
+    {% set all_tag_sql = [] %}
     {% for column in columns %}
-      {% set tag_sql %}
-        ALTER {{ relation_type }} {{ this }} 
-        ALTER COLUMN {{ column }} SET TAG {{ tag_name }} = '{{ masking_domain }}'
-      {% endset %}
-      {{ log("Setting " ~ relation_type ~ " tag on column " ~ column ~ " with domain '" ~ masking_domain ~ "'", info=true) }}
-      {% do run_query(tag_sql) %}
+      {% set tag_statement = "ALTER " ~ relation_type ~ " " ~ this ~ " ALTER COLUMN " ~ column ~ " SET TAG " ~ tag_name ~ " = '" ~ masking_domain ~ "'" %}
+      {% do all_tag_sql.append(tag_statement) %}
+      {{ log("Preparing tag for column " ~ column ~ " with domain '" ~ masking_domain ~ "'", info=true) }}
     {% endfor %}
+    
+    {# Execute all statements as one #}
+    {% if all_tag_sql %}
+      {% set combined_sql = all_tag_sql | join(';\n') %}
+      {% do run_query(combined_sql) %}
+    {% endif %}
   {% endif %}
 {% endmacro %}
