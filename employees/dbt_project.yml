@@ -23,3 +23,8 @@ models:
       schema: employees_bronze
       +materialized: view
       +tags: ["bronze"]
+
+## Variables
+vars:
+  # Global domain for data masking tags
+  domain: "employees"
