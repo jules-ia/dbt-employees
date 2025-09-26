@@ -3,11 +3,6 @@ version: 2
 models:
   - name: trh_s1contrat
     description: "Contrats des employés"
-    config:
-      post-hook: |
-        {% if target.type == 'snowflake' %}
-        -- Data masking policies can be applied here if needed
-        {% endif %}
     columns:
       - name: contrat_contrat
         description: "Identifiant contrat"

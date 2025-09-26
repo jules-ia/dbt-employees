@@ -2,7 +2,7 @@
 name: employees
 version: "1.0"
 config-version: 2
-profile: employees
+profile: staging
 
 ## Sources
 model-paths: [models]
@@ -20,7 +20,7 @@ clean-targets: [target, dbt_modules]
 models:
   employees:
     bronze:
-      schema: employees_bronze
+      schema: bronze
       +materialized: view
       +tags: ["bronze"]
 

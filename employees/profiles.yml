@@ -5,15 +5,15 @@ employees:
       type: snowflake
       account: "not needed"
       user: "not needed"
-      role: DBT__B_ROLE
-      database: DBT_STAGING
-      schema: PUBLIC
-      warehouse: DATAMESH_XS
+      role: dbt__b_role
+      database: dbt_staging
+      schema: employees
+      warehouse: datamesh_xs
     production:
       type: snowflake
       account: "not needed"
       user: "not needed"
-      role: DBT__B_ROLE
-      database: DBT
-      schema: PUBLIC
-      warehouse: DATAMESH_XS
+      role: dbt__b_role
+      database: dbt
+      schema: employees
+      warehouse: datamesh_xs
